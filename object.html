@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //对象拼接
+        var obj1={name:'张三'};
+        var obj2={age:18};
+        var obj3={say:function(){
+            console.log('说话');
+        }}
+        console.log(Object.assign(obj1,obj2,obj3));
+        console.log(obj1,obj2);
+        //对象拷贝
+        var obj={name:'张三',age:20};
+        var newObj=Object.assign({},obj);
+        console.log(newObj);
+        //判断两个值是否相同
+        console.log(Object.is(+0,-0));
+        console.log(Object.is(NaN,NaN));
+        //确定一个对象是否存在于另一个对象原型链中
+        function a(){
+        }
+        var b=new a();
+        console.log(a.prototype.isPrototypeOf(b));
+        //直接在对象上定义一个新属性或修改一个现有的
+        var obj=new Object();
+        Object.defineProperty(obj,'name',{
+            configurable:false,
+            writable:true,
+            enumerable:true,
+            value:'李四'
+        })
+        console.log(obj.name);
+        //直接定义或修改多个属性
+        var obj=new Object();
+        Object.defineProperties(obj,{
+            name:{
+                value:"张三",
+                configurable:false,
+                writable:true,
+                enumerable:true
+            },
+            age:{
+                value:18,
+                configurable:true
+            }
+        })
+        console.log(obj.name,obj.age);
+        //组织修改现有属性并阻止添加新属性
+        var obj={name:'张三',age:18};
+        Object.freeze(obj);
+        obj.name='李四';
+        obj.sex='男';
+        console.log(obj);
+        
+        var obj={
+            name:"zhangsan",
+            age:20
+        }
+        Object.freeze(obj);
+        obj.name="lisi";
+        console.log(obj.name);
+        //for in 循环
+        var obj={
+            name:'小米',
+            age:18,
+            say:function(){
+                console.log('你好');
+            }
+        }
+        for(var i in obj){
+            console.log(obj[i]);
+        }
+        //返回一个数组，包括对象自身所有可枚举属性的键名
+        var obj={'a':'123','b':'345'}
+        console.log(Object.keys(obj));
+
+        var obj1={100:"a",2:"b",7:"c"};
+        console.log(Object.keys(obj1));
+
+        var obj2=Object.create({},{getFoo:{value:function(){return this.foo}}});
+        obj2.foo=1;
+        console.log(Object.keys(obj2));
+        //返回一个数组包含所有属性,不含symbol
+        var obj={
+            name:'小米',
+            age:18,
+            sex:'women'
+        }
+        console.log(Object.getOwnPropertyNames(obj));
+        //返回一个数组，包含所有symbol属性
+        var obj={
+            name:'小米',
+            age:18,
+            sex:'women'
+        };
+        var a=Symbol('a');
+        var b=Symbol.for('b');
+        obj[a]='localSymbol';
+        obj[b]='globalSymbpl';
+        var objectSymbols=Object.getOwnPropertySymbols(obj);
+        console.log(objectSymbols);
+        //返回一个数组所有属性
+        var object=Reflect.ownKeys(obj);
+        console.log(object);
+        //返回一个给定对象自身属性的数组
+        var o={name:'zhangsan',age:20};
+        console.log(Object.values(o));
+    </script>
+</body>
+</html>

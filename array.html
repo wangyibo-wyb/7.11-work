@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //向数组末尾追加元素,返回修改后数组长度
+        var arr=[1,2,3,4];
+        console.log(arr.push(5));
+        //向数组开头添加元素,返回修改后数组长度
+        console.log(arr.unshift(3));
+        //删除末尾元素，返回被删除数据
+        console.log(arr.pop());
+        //开头删除一个元素，返回被删除数据
+        console.log(arr.shift());
+        //任意位置添加删除
+        console.log(arr.splice(3,1,9));
+        //将数组数据分割成为字符串
+        console.log(arr.join('分隔符'));
+        //数据的截取
+        console.log(arr.slice(1,3));
+        //多个数组连接
+        var arr1=[1,2,3];
+        var arr2=[4,5,6];
+        console.log(arr1.concat(arr2,[7,8,9]));
+        //查找某个值第一次出现的下标
+        var arr=[1,3,5,6765,55,333,75,78,42,1];
+        console.log(arr.indexOf(6765));
+        //倒序查找某个值第一次出现的下标
+        console.log(arr.lastIndexOf(1));
+        //数组的排序
+        var arr3=[1,4,2,6,9,8,5];
+        arr3.sort(function(a,b){
+            return a-b;//正序
+        })
+        console.log(arr3);
+        //遍历数组
+        arr3.forEach(function(value,index){
+            console.log(index,value);
+        })
+        //根据条件筛选数组元素
+        var arr4=[1,3,5,6765,55,333,75,78,42,1];
+        var newArr=arr.filter(function(value,index){
+            return value>100;
+        })
+        console.log(newArr);
+
+        var person=[
+            {name:'张三',age:20,sex:'男'},
+            {name:'李四',age:19,sex:'女'},
+            {name:'王五',age:22,sex:'男'},
+            {name:'赵六',age:21,sex:'女'}
+        ];
+        var x=person.filter(function(value,index){
+            return value.age>20;
+        })
+        console.log(x);
+        //映射，将数据按条件改变，形成新元素
+        var arr5=[1,2,3,4,5,6];
+        var end=arr5.map((value,index)=>value*2);
+        console.log(end);
+        //根据回调函数判断选择真假,只要有一个符合为真
+        var arr4=[1,3,5,6765,55,333,75,78,42,1];
+        var end1=arr4.some(function(value,index){
+            return value<500;
+        })
+        console.log(end1);
+        //判断，只要有一个不符合为假
+        var end2=arr4.every(function(value,index){
+            return value<500;
+        })
+        console.log(end2);
+        //数组倒序,改变原数组
+        console.log(arr3.reverse());
+        //将两类对象转为真正的数组
+        var a={length:2,0:'aaa',1:'bbb'};
+        console.log(Array.from(a));
+        var b={length:2};
+        console.log(Array.from(b));
+        //将一组值转化为数组
+        console.log(Array.of());
+        console.log(Array.of(undefined));
+        console.log(Array.of(1));
+        console.log(Array.of(1,2));
+        //检查数组是否包含某元素，无法检测对象
+        var arr6=[1,2,{name:'张三'}];
+        console.log(arr6.includes(2));
+        console.log(arr6.includes(4));
+        console.log(arr6.includes({name:'张三'}));
+
+        console.log(['a','b','c','d'].includes('b'));
+        console.log(['a','b','c','d'].includes('b',1));
+        console.log(['a','b','c','d'].includes('b',2));
+        //数组乱序
+        var arr7=[1,2,3,4,5,6,7,8,9];
+        arr7.sort(()=>Math.random()-0.5);
+        console.log(arr7);
+    </script>
+</body>
+</html>
